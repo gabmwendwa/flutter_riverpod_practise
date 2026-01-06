@@ -8,8 +8,24 @@ In the terminal, make sure you are in your project directory and run the followi
 ```Installing flutter_riverpod
 $ flutter pub add flutter_riverpod
 ```
-This will add the package to the pubspec.yaml file:
+This will add the package to the `pubspec.yaml` file:
 ```
 dependencies:
   flutter_riverpod: ^latest_version
+```
+## Project Structure
+### Step One
+Create read-only state value using providers
+```
+...
+
+final productsProvider = Provider((ref) {
+  return allProducts;
+});
+
+final reducedProductsProvider = Provider((ref) {
+  return allProducts.where((p) => p.price < 50).toList();
+});
+
+...
 ```
