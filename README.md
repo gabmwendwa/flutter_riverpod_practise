@@ -108,3 +108,60 @@ In the build widget we should reference and consume the provider as follows:
   }
 ...
 ```
+### Step Three: Create Stateful Consumers
+In cart_screen.dart, extend ConsumerStatefulWidget instead of StatefulWidget in the CartScreen class to consume the providers created. Also change the State class to ConsumerState class. It should look like this:
+```
+...
+class CartScreen extends ConsumerStatefulWidget {
+  const CartScreen({super.key});
+
+  @override
+  ConsumerState<CartScreen> createState() => _CartScreenState();
+}
+
+class _CartScreenState extends ConsumerState<CartScreen> {
+  bool showCoupon = true;
+
+  @override
+  Widget build(BuildContext context) {
+    final cartProducts = ref.watch(reducedProductsProvider);
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Your Cart'),
+        centerTitle: true,
+        // actions: [],
+      ),
+      body: Container(
+        padding: const EdgeInsets.all(30),
+        child: Column(
+          children: [
+            Column(
+              children: cartProducts.map((product) {
+                return Container(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Image.asset(product.image, width: 60, height: 60),
+                      const SizedBox(width: 10),
+                      Text('${product.title}...'),
+                      const Expanded(child: SizedBox()),
+                      Text('£${product.price}'),
+                    ],
+                  ),
+                );
+              }).toList(), // output cart products here
+            ),
+
+            // output totals here
+          ],
+        ),
+      ),
+    );
+  }
+}
+...
+```
+
+
