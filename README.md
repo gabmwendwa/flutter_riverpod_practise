@@ -14,7 +14,7 @@ dependencies:
   flutter_riverpod: ^latest_version
 ```
 ## Project Structure
-### Step One
+### Step One: Create Providers with Read-Only State Values
 Create read-only state value using providers
 ```
 ...
@@ -29,7 +29,7 @@ final reducedProductsProvider = Provider((ref) {
 
 ...
 ```
-### Stateless Consumers
+### Step Two: Create Stateless Consumers
 In main.dart, the entire application is wrapped by a ProviderScope to outline the scope in which the providers can be used within the application.
 ```
 ...
