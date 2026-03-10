@@ -5,7 +5,7 @@ class CartNotifier extends Notifier<Set<Product>> {
   // initial value
   @override
   Set<Product> build() {
-    return {
+    return const {
       Product(
         id: '1',
         title: 'Groovy Shorts',
@@ -16,6 +16,17 @@ class CartNotifier extends Notifier<Set<Product>> {
   }
 
   // methods to update the state
+  void addProduct(Product product) {
+    if (!state.contains(product)) {
+      state = {...state, product};
+    }
+  }
+
+  void removeProduct(Product product) {
+    if (state.contains(product)) {
+      state = state.where((p) => p.id != product.id).toSet();
+    }
+  }
 }
 
 final cartNotifierProvider = NotifierProvider<CartNotifier, Set<Product>>(() {
