@@ -89,4 +89,4 @@ final class ReducedProductsProvider
   }
 }
 
-String _$reducedProductsHash() => r'9b23bd0ea33da69739e283b8d0443324351e4b09';
+String _$reducedProductsHash() => r'9a406a943f12456be0238eff20522cce8b5859fd';

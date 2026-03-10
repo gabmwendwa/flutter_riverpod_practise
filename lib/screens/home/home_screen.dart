@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod_practise/providers/cart_notifier.dart';
 import 'package:flutter_riverpod_practise/providers/products_provider.dart';
 import 'package:flutter_riverpod_practise/shared/cart_icon.dart';
 
@@ -9,6 +10,7 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final allProducts = ref.watch(productsProvider);
+    final cartProducts = ref.watch(cartNotifierProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -55,6 +57,25 @@ class HomeScreen extends ConsumerWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
+
+                  if (cartProducts.contains(allProducts[index]))
+                    ElevatedButton(
+                      onPressed: () {
+                        // ref
+                        //     .read(cartNotifierProvider.notifier)
+                        //     .update((state) => {...state, allProducts[index]});
+                      },
+                      child: const Text('Remove'),
+                    )
+                  else
+                    ElevatedButton(
+                      onPressed: () {
+                        // ref
+                        //     .read(cartNotifierProvider.notifier)
+                        //     .update((state) => {...state, allProducts[index]});
+                      },
+                      child: const Text('Add to Cart'),
+                    ),
                 ],
               ),
             );
