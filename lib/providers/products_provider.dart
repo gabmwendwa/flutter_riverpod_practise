@@ -70,6 +70,5 @@ List<Product> products(ref) {
 
 @riverpod
 List<Product> reducedProducts(ref) {
-  final products = ref.watch(productsProvider);
-  return products.where((p) => p.price < 50).toList();
+  return allProducts.where((p) => p.price < 50).toList();
 }
